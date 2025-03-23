@@ -1,0 +1,544 @@
+Test Case 1	
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+	{
+			"route": [
+				"SOF",
+				"LON",
+				"MLE"
+			],
+			"price": 30
+		},
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+		
+	Response after testing:
+	{
+			"route": [
+				"SOF",
+				"LON",
+				"MLE"
+			],
+			"price": 30
+		},
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+
+
+Test Case 2	
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE",
+	"maxFlights": "1"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+		
+	Response after testing:
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+		
+		
+Test Case 3	
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE",
+	"maxFlights": "2"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+	{
+			"route": [
+				"SOF",
+				"LON",
+				"MLE"
+			],
+			"price": 30
+		},
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+		
+	Response after testing:
+	{
+			"route": [
+				"SOF",
+				"LON",
+				"MLE"
+			],
+			"price": 30
+		},
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+		
+		
+Test Case 4
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE",
+	"maxFlights": "-1"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: Invalid Data
+		   
+	Response after testing:
+           error404: Invalid Data
+
+
+Test Case 5
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: Invalid Data
+		   
+	Response after testing:
+           error404: Invalid Data
+		   
+		  
+Test Case 6
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF"
+	"destination": 5
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: Invalid Data
+		   
+	Response after testing:
+           error404: Invalid Data
+		   
+		  		  
+Test Case 7
+	When I give body raw JSON input to Postman:
+	{
+	"destination": "MLE"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: Invalid Data
+		   
+	Response after testing:
+           error404: Invalid Data
+		   
+
+Test Case 8
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "&^*"
+	"destination": "MLE"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: Invalid Data
+		   
+	Response after testing:
+           error404: Invalid Data
+		   
+		  		  
+Test Case 9
+	When I give body raw JSON input to Postman:
+	{
+	"maxFlights": "1"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: Invalid Data
+		   
+	Response after testing:
+           error404: Invalid Data
+
+
+Test Case 10
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE",
+	"maxFlights": null
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+	{
+			"route": [
+				"SOF",
+				"LON",
+				"MLE"
+			],
+			"price": 30
+		},
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+		
+	Response after testing:
+	{
+			"route": [
+				"SOF",
+				"LON",
+				"MLE"
+			],
+			"price": 30
+		},
+		{
+			"route": [
+				"SOF",
+				"MLE"
+			],
+			"price": 70
+		}
+
+Test Case 11
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF"
+	"destination": null
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: Invalid Data
+		   
+	Response after testing:
+           error404: Invalid Data
+		   
+		
+Test Case 12
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "NYC"
+	}
+
+	and the input file contains:
+	Flights:
+     SOF,MLE,70
+     SOF,LON,10
+     LON,MLE,20
+	 
+	I expect the result:
+           error404: No routes
+		   
+	Response after testing:
+           error404: No routes
+		  
+		  
+Test Case 13
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE"
+	}
+
+	and the input file contains:
+     Flights:
+     SOF,IST,10
+     IST,CMB,20
+     CMB,MLE,40
+
+	I expect the result:
+	{
+        "route": [
+            "SOF",
+            "IST",
+            "CMB",
+            "MLE"
+        ],
+        "price": 70
+    }
+	
+	Response after testing:
+	{
+        "route": [
+            "SOF",
+            "IST",
+            "CMB",
+            "MLE"
+        ],
+        "price": 70
+    }
+
+
+Test Case 14
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE",
+	"maxFlights": "1"
+	}
+
+	and the input file contains:
+     Flights:
+     SOF,IST,10
+     IST,CMB,20
+     CMB,MLE,40
+	 
+	I expect the result:
+           error404: No routes
+		   
+	Response after testing:
+           error404: No routes
+	 
+
+Test Case 15
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE"
+	"maxFlights": "3"
+	}
+
+	and the input file contains:
+     Flights:
+     SOF,IST,10
+     IST,CMB,20
+     CMB,MLE,40
+
+	I expect the result:
+	{
+        "route": [
+            "SOF",
+            "IST",
+            "CMB",
+            "MLE"
+        ],
+        "price": 70
+    }
+	
+	Response after testing:
+	{
+        "route": [
+            "SOF",
+            "IST",
+            "CMB",
+            "MLE"
+        ],
+        "price": 70
+    }
+	
+	
+Test Case 16
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "MLE",
+	}
+
+	and the input file contains:
+     Flights:
+     SOF,LON,10
+     SOF,NYC,20
+
+	I expect the result:
+           error404: No routes
+		   
+	Response after testing:
+           error404: No routes
+		   
+		   
+Test Case 17
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "TKY"
+	}
+
+	and the input file contains:
+     Flights:
+     SOF,IST,10
+     SOF,LON,20
+     LON,PAR,20
+     PAR,BEJ,40
+     BEJ,TKY,20
+     SOF,AMS,30
+     AMS,TKY,70
+
+	I expect the result:
+	{
+        "route": [
+            "SOF",
+            "LON",
+            "PAR",
+            "BEJ",
+            "TKY"
+        ],
+        "price": 100
+    },
+    {
+        "route": [
+            "SOF",
+            "AMS",
+            "TKY"
+        ],
+        "price": 100
+    }
+	
+	Response after testing:
+	{
+        "route": [
+            "SOF",
+            "LON",
+            "PAR",
+            "BEJ",
+            "TKY"
+        ],
+        "price": 100
+    },
+    {
+        "route": [
+            "SOF",
+            "AMS",
+            "TKY"
+        ],
+        "price": 100
+    }
+	
+	
+Test Case 18
+	When I give body raw JSON input to Postman:
+	{
+	"origin": "SOF",
+	"destination": "TKY",
+    "maxFlights": "2"
+	}
+
+	and the input file contains:
+     Flights:
+     SOF,IST,10
+     SOF,LON,20
+     LON,PAR,20
+     PAR,BEJ,40
+     BEJ,TKY,20
+     SOF,AMS,30
+     AMS,TKY,70
+
+	I expect the result:
+    {
+        "route": [
+            "SOF",
+            "AMS",
+            "TKY"
+        ],
+        "price": 100
+    }
+	
+	Response after testing:
+    {
+        "route": [
+            "SOF",
+            "AMS",
+            "TKY"
+        ],
+        "price": 100
+    }
